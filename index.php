@@ -75,6 +75,48 @@
           </form>
         </div>
       </div>
+      <div class="container">
+        <h1 class="text-center">Lista de usuarios</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Documento</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    // Conexión a la base de datos
+                    include("conexion.php");
+                    $con = conexion();
+
+                    // Consulta a la base de datos
+                    $consulta = "SELECT documento, nombre, apellido, direccion, celular FROM persona";
+                    $resultados = pg_query($con, $consulta);
+
+                    // Verificar si se obtuvieron resultados
+                    if (pg_num_rows($resultados) > 0) {
+
+                        while ($fila = pg_fetch_assoc($resultados)) {
+                            echo '<tr>';
+                            echo '<td>' . $fila['documento'] . '</td>';
+                            echo '<td>' . $fila['nombre'] . '</td>';
+                            echo '<td>' . $fila['apellido'] . '</td>';
+                            echo '<td>' . $fila['direccion'] . '</td>';
+                            echo '<td>' . $fila['celular'] . '</td>';
+                            echo '</tr>';
+                        }
+                    } else {
+                        echo '<tr><td colspan="5">No se encontraron registros.</td></tr>';
+                    }
+                ?>
+            </tbody>
+        </table>
+
+      </div>
 
       <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
