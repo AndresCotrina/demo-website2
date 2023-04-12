@@ -76,9 +76,12 @@
         </div>
       </div>
       <div class="container">
+        <br>
+        <br>
         <h1 class="text-center">Lista de usuarios</h1>
-        <table class="table table-hover">
-            <thead>
+        <br>
+        <table class="table table-hover table-striped">
+            <thead class="thead-dark">
                 <tr>
                     <th>Documento</th>
                     <th>Nombre</th>
